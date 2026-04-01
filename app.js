@@ -341,7 +341,41 @@ function subscribe() {
 }
 
 function buyItem(id, price) {
-  alert("Por hora, esta função comprará um pacote avulso! (A implementar link separado para cada ID)");
+  const prod = ALL_PRODUCTS.find(p => p.id === id);
+  if (!prod) return;
+  const title = (prod.title || '').toLowerCase();
+
+  // Mapeamento dos PRODUTOS na Lowify 
+  const checkoutMap = {
+    'doces': 'txp1So',
+    'caktos': '9mJmon',
+    'bosque': 'PE4kVc',
+    'capivara': 'e9UorW',
+    'dinos': '0TxVp8',
+    'dorameira': 'diT85S',
+    'bts': '3ioW97',
+    'divertidamente': 'Kt8GZP',
+    'adesivos': 'bhq00w',
+    'uno': '6tir3l',
+    'bobbie': 'MM0fDE'
+  };
+
+  let lowifyId = null;
+  for (const [key, value] of Object.entries(checkoutMap)) {
+    if (title.includes(key)) {
+      lowifyId = value;
+      break;
+    }
+  }
+
+  if (lowifyId) {
+    // Mesma estratégia Premium de preenchimento automático para compra avulsa
+    const emailParam = currentUser ? `&email=${encodeURIComponent(currentUser.email)}` : '';
+    const checkoutUrl = `https://pay.lowify.com.br/checkout?product_id=${lowifyId}${emailParam}`;
+    window.location.href = checkoutUrl;
+  } else {
+    alert("Produto sem link de checkout no momento. " + title);
+  }
 }
 
 function downloadPdf(id) {
