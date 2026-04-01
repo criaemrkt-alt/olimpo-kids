@@ -357,7 +357,9 @@ function buyItem(id, price) {
     'divertidamente': 'Kt8GZP',
     'adesivos': 'bhq00w',
     'uno': '6tir3l',
-    'bobbie': 'MM0fDE'
+    'bobbie': 'MM0fDE',
+    'memória': 'ifOpvA',
+    'memoria': 'ifOpvA'
   };
 
   let lowifyId = null;
