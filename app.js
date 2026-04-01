@@ -143,8 +143,8 @@ function renderCatalog() {
   // Limpeza segura caso alguma linha no DB não tenha title
   const getTitle = (p) => (p.title || '').toLowerCase();
 
-  // 1. Filtrar Jogo da Memória (oculto por hora)
-  const CATALOG = ALL_PRODUCTS.filter(p => !getTitle(p).includes('memória'));
+  // O Catálogo agora exibe todos os produtos do Supabase, incluindo o Jogo da Memória
+  const CATALOG = ALL_PRODUCTS;
   
   // 2. Criar as "Séries" / Categorias 
   const originais = CATALOG.filter(p => getTitle(p).includes('olimpo'));
